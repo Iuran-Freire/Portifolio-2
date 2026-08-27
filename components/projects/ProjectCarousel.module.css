@@ -21,7 +21,7 @@
 
 .stage {
   position: relative;
-  min-height: 43rem;
+  min-height: 71rem;
 }
 
 .slide {
@@ -168,7 +168,7 @@
     padding-top: 0.5rem;
   }
 
-  .stage { min-height: 54rem; }
+  .stage { min-height: 87rem; }
 
   .slide {
     width: calc(100vw - 2rem);

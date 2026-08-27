@@ -5,7 +5,10 @@ import type { pt } from "@/dictionaries/pt";
 import { Reveal } from "@/components/animations/Reveal";
 import styles from "./Contact.module.css";
 
-type ContactProps = { content: typeof pt.contact };
+type ContactProps = {
+  content: typeof pt.contact;
+  language: "pt" | "en";
+};
 
 type Portal = {
   label: string;
@@ -15,7 +18,7 @@ type Portal = {
   external?: boolean;
 };
 
-export function Contact({ content }: ContactProps) {
+export function Contact({ content, language }: ContactProps) {
   const portals: Portal[] = [
     {
       label: content.email,
@@ -50,7 +53,13 @@ export function Contact({ content }: ContactProps) {
     <section id="contato" className={styles.section}>
       <Reveal className={styles.content}>
         <p className={styles.introduction}>{content.introduction}</p>
-        <h2 className={styles.title}>{content.title}</h2>
+        <h2
+          className={`${styles.title} ${
+            language === "en" ? styles.titleEnglish : ""
+          }`}
+        >
+          {content.title}
+        </h2>
         <p className={styles.description}>{content.description}</p>
 
         <address className={styles.portalStation}>

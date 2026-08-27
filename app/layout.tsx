@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
+import "@fontsource/press-start-2p/400.css";
 import "./globals.css";
 
 // Inter mantém parágrafos e descrições claros e confortáveis de ler.

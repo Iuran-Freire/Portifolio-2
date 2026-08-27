@@ -20,14 +20,14 @@
 .container { position: relative; z-index: 1; max-width: 72rem; margin: 0 auto; }
 .heading { max-width: 48rem; }
 .eyebrow { color: #22d3ee; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; }
-.title { margin-top: 1rem; color: #f8fafc; font-size: clamp(2.1rem, 5vw, 3.7rem); line-height: 1.05; letter-spacing: -0.04em; }
+.title { margin-top: 1rem; color: #f8fafc; font-size: clamp(1.7rem, 4vw, 3rem); line-height: 1.35; letter-spacing: 0; }
 .description { max-width: 43rem; margin-top: 1.35rem; color: #a8b6ca; font-size: clamp(1.08rem, 2vw, 1.2rem); line-height: 1.75; }
 .galaxyWrapper { margin-top: clamp(3rem, 7vw, 5rem); text-align: center; }
 
 .galaxy {
-  --orbit-radius: clamp(13rem, 29vw, 19rem);
+  --orbit-radius: clamp(14rem, 30vw, 21rem);
   position: relative;
-  width: min(100%, 48rem);
+  width: min(100%, 54rem);
   aspect-ratio: 1;
   margin: 0 auto;
 }
@@ -106,8 +106,8 @@
 .planetContent {
   appearance: none;
   display: flex;
-  width: clamp(6.7rem, 13vw, 8.5rem);
-  min-height: 5.8rem;
+  width: clamp(10rem, 15vw, 11rem);
+  min-height: 7.2rem;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -147,11 +147,11 @@
 }
 
 @media (max-width: 600px) {
-  .galaxy { --orbit-radius: min(34vw, 8.2rem); width: 100%; min-height: 27rem; aspect-ratio: auto; }
-  .planetContent { width: 5.3rem; min-height: 4.6rem; padding: 0.45rem 0.3rem; border-radius: 0.9rem; }
+  .galaxy { --orbit-radius: min(35vw, 8.8rem); width: 100%; min-height: 31rem; aspect-ratio: auto; }
+  .planetContent { width: 5.9rem; min-height: 5.4rem; padding: 0.55rem 0.35rem; border-radius: 0.9rem; }
   .iconShell { width: 1.65rem; height: 1.65rem; }
   .icon { width: 1rem; height: 1rem; }
-  .skillName { font-size: 0.67rem; }
+  .skillName { font-size: 0.6rem; line-height: 1.35; }
   .description { font-size: 1rem; line-height: 1.65; }
   .hint { max-width: 18rem; margin-right: auto; margin-left: auto; font-size: 0.78rem; line-height: 1.5; }
   .category { display: none; }

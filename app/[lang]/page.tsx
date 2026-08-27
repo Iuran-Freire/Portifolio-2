@@ -78,7 +78,7 @@ export default async function Home({ params }: PageProps) {
         {/* Envia os textos traduzidos dos projetos */}
         <Projects content={dictionary.projects} />
 
-        <Contact content={dictionary.contact} />
+        <Contact content={dictionary.contact} language={lang} />
       </main>
 
       <Footer content={dictionary.footer} />
