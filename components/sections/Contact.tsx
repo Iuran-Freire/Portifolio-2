@@ -58,7 +58,14 @@ export function Contact({ content, language }: ContactProps) {
             language === "en" ? styles.titleEnglish : ""
           }`}
         >
-          {content.title}
+          {language === "en" ? (
+            <>
+              <span className={styles.titleLead}>Let’s transform</span>
+              <span className={styles.titleSecondLine}>an idea into a solution</span>
+            </>
+          ) : (
+            content.title
+          )}
         </h2>
         <p className={styles.description}>{content.description}</p>
 

@@ -1,55 +1,158 @@
-.card { position: relative; min-height: 70rem; border-radius: 2rem; outline: none; }
-.surface { position: absolute; inset: 0; display: grid; grid-template-columns: minmax(20rem,1fr) minmax(23rem,1fr); align-items: center; gap: clamp(1rem,4vw,4rem); padding: clamp(1rem,3vw,2.5rem); }
-.surface::before { position: absolute; top: 50%; left: 22%; width: 25rem; aspect-ratio: 1; content: ""; border-radius: 50%; background: rgb(34 211 238 / 8%); filter: blur(65px); transform: translate(-50%,-50%); pointer-events: none; }
-.world { --orbit-radius: 11.5rem; position: relative; display: grid; width: min(100%,25rem); aspect-ratio: 1; place-items: center; justify-self: center; perspective: 800px; transition: transform 700ms cubic-bezier(.22,1,.36,1); }
-.planet { position: relative; z-index: 2; width: 68%; aspect-ratio: 1; overflow: hidden; border: 1px solid rgb(165 243 252 / 38%); border-radius: 50%; background: #0e7490; box-shadow: inset -2.5rem -1.5rem 4rem rgb(2 6 23 / 88%),inset 1rem 0 2.5rem rgb(103 232 249 / 18%),0 0 4rem rgb(34 211 238 / 19%); transition: transform 650ms cubic-bezier(.22,1,.36,1),box-shadow 500ms ease; }
-.image { width: 145% !important; max-width: none !important; height: 100% !important; object-fit: cover; filter: saturate(.82) contrast(1.08) brightness(.72); transform: translateX(-10%); animation: planetDrift 18s ease-in-out infinite alternate; }
-.imageFallback { position: absolute; inset: 0; background: radial-gradient(circle at 32% 30%,rgb(165 243 252 / 60%) 0 3%,transparent 4%),radial-gradient(ellipse at 64% 38%,rgb(45 212 191 / 40%) 0 14%,transparent 15%),radial-gradient(ellipse at 45% 68%,rgb(99 102 241 / 54%) 0 18%,transparent 19%),linear-gradient(135deg,#155e75,#312e81 58%,#020617); }
-.atmosphere { position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(circle at 32% 25%,rgb(255 255 255 / 28%),transparent 22%); box-shadow: inset -3rem -1rem 3.5rem rgb(2 6 23 / 78%); animation: atmospherePulse 5s ease-in-out infinite; }
-.orbit { position: absolute; z-index: 1; width: 98%; height: 42%; border: 1px solid rgb(103 232 249 / 30%); border-radius: 50%; transform: rotate(-15deg); transition: width 700ms cubic-bezier(.22,1,.36,1),height 700ms cubic-bezier(.22,1,.36,1),border-color 400ms ease,box-shadow 400ms ease; }
-.moon { position: absolute; z-index: 3; top: 50%; left: 50%; width: 1rem; aspect-ratio: 1; border-radius: 50%; background: #a5f3fc; box-shadow: 0 0 1.3rem #22d3ee; animation: moonOrbit 7s linear infinite; transition: width 450ms ease,box-shadow 450ms ease; }
-.shadow { position: absolute; bottom: 5%; width: 58%; height: 8%; border-radius: 50%; background: rgb(34 211 238 / 14%); filter: blur(18px); }
-.card[data-project="2"] .planet { background: #1d4ed8; box-shadow: inset -2.5rem -1.5rem 4rem rgb(2 6 23 / 88%),0 0 4rem rgb(59 130 246 / 20%); }
-.card[data-project="3"] .planet { background: #7c3aed; box-shadow: inset -2.5rem -1.5rem 4rem rgb(2 6 23 / 88%),0 0 4rem rgb(168 85 247 / 22%); }
-.content { position: relative; z-index: 4; overflow: hidden; border: 1px solid rgb(125 211 252 / 17%); border-radius: 1.6rem; padding: clamp(1.4rem,3vw,2.25rem); background: linear-gradient(135deg,rgb(15 23 42 / 72%),rgb(2 6 23 / 48%)); box-shadow: 0 24px 70px rgb(2 6 23 / 32%); backdrop-filter: blur(12px); transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)); transform-style: preserve-3d; transition: transform 180ms ease,border-color 300ms ease,box-shadow 300ms ease; }
-.content::before { position: absolute; z-index: 0; inset: 0; content: ""; opacity: 0; background: radial-gradient(260px circle at var(--spot-x) var(--spot-y),rgb(103 232 249 / 18%),rgb(99 102 241 / 7%) 42%,transparent 72%); transition: opacity 300ms ease; pointer-events: none; }
-.content::after { position: absolute; top: 0; left: 12%; width: 42%; height: 1px; content: ""; background: linear-gradient(90deg,transparent,#22d3ee,transparent); }
-.content:hover,.content:focus-within { border-color: rgb(103 232 249 / 40%); box-shadow: 0 30px 85px rgb(2 6 23 / 45%),0 0 2.5rem rgb(34 211 238 / 8%); }
-.content:hover::before,.content:focus-within::before { opacity: 1; }
-.content > * { position: relative; z-index: 1; transform: translateZ(18px); }
-.labels { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem; }
-.number,.category { color: #67e8f9; font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.category { color: #94a3b8; }
-.title { margin-top: .9rem; color: #f8fafc; font-size: clamp(1.4rem,2.4vw,2rem); font-weight: 400; line-height: 1.35; }
-.highlight { margin-top: .9rem; color: #cbd5e1; font-size: 1.05rem; }
-.description { margin-top: 1.25rem; color: #a8b5c7; line-height: 1.7; }
-.features { display: grid; gap: .5rem; margin-top: 1rem; padding: 0; color: #cbd5e1; font-size: .9rem; line-height: 1.5; list-style: none; }
-.features li { position: relative; padding-left: 1.1rem; }
-.features li::before { position: absolute; top: .55rem; left: 0; width: .38rem; height: .38rem; content: ""; border-radius: 50%; background: #22d3ee; box-shadow: 0 0 .65rem rgb(34 211 238 / 70%); }
-.technologies { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; padding: 0; list-style: none; }
-.technology { border: 1px solid rgb(103 232 249 / 16%); border-radius: 999px; padding: .35rem .72rem; background: rgb(15 23 42 / 72%); color: #cbd5e1; font-size: .82rem; }
-.link { display: inline-flex; margin-top: 1.35rem; border: 1px solid rgb(103 232 249 / 46%); border-radius: 999px; padding: .72rem 1.2rem; color: #67e8f9; font-weight: 650; transition: background 180ms ease,color 180ms ease,transform 180ms ease; }
-.link:hover,.link:focus-visible { background: #22d3ee; color: #020617; outline: none; transform: translateY(-2px); }
-.card:hover .world,.card:focus-within .world { transform: scale(1.06); }
-.card:hover .planet,.card:focus-within .planet { transform: translateY(-.4rem) rotate(-2deg) scale(1.16); box-shadow: inset -2.5rem -1.5rem 4rem rgb(2 6 23 / 76%),0 0 6.5rem rgb(34 211 238 / 48%); }
-.card:hover .orbit,.card:focus-within .orbit { width: 112%; height: 50%; border-color: rgb(103 232 249 / 62%); box-shadow: 0 0 1.4rem rgb(34 211 238 / 12%); }
-.card:hover .moon,.card:focus-within .moon { width: 1.25rem; box-shadow: 0 0 2rem #22d3ee; animation-duration: 4.8s; }
+.card {
+  position: relative;
+  height: 100%;
+  overflow: visible;
+  border: 0;
+  border-radius: 1.15rem;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+  transition: transform 420ms cubic-bezier(.22, 1, .36, 1), border-color 300ms ease, box-shadow 300ms ease;
+}
+
+.card::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  opacity: 0;
+  display: none;
+  transition: opacity 350ms ease;
+  pointer-events: none;
+}
+
+.card:hover,
+.card:focus-within {
+  box-shadow: none;
+  transform: translateY(-.55rem);
+}
+
+.card:hover::after,
+.card:focus-within::after { opacity: 1; }
 .card:focus-visible { box-shadow: 0 0 0 2px #22d3ee; }
-@keyframes planetDrift { to { transform: translateX(-24%); } }
-@keyframes moonOrbit {
-  from { transform: translate(-50%,-50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg); }
-  to { transform: translate(-50%,-50%) rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg); }
+
+.surface {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
 }
-@keyframes atmospherePulse { 50% { opacity: .72; filter: brightness(1.22); } }
-@media (max-width:700px) {
-  .card { min-height: 86rem; }
-  .surface { grid-template-columns: 1fr; align-content: start; gap: .25rem; padding: .5rem; }
-  .surface::before { left: 50%; width: 18rem; }
-  .world { --orbit-radius: 7.5rem; width: min(74vw,16rem); }
-  .content { padding: 1.2rem; backdrop-filter: blur(8px); }
-  .title { font-size: 1.3rem; line-height: 1.4; }
-  .highlight,.description,.features { font-size: .9rem; }
-  .description { line-height: 1.55; }
+
+.world {
+  position: relative;
+  display: grid;
+  overflow: visible;
+  aspect-ratio: 16 / 9;
+  place-items: center;
+  background: transparent;
 }
-@media (hover:none),(pointer:coarse) { .content { transform: none; } .content::before { display: none; } .content > * { transform: none; } }
-@media (prefers-reduced-motion:reduce) { .image,.moon,.atmosphere { animation: none; } .world,.planet,.orbit,.moon,.link { transition-duration: 1ms; } }
+
+.world::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  z-index: 3;
+  display: none;
+  background-image: radial-gradient(circle, rgb(165 243 252 / 72%) 0 1px, transparent 1.4px);
+  background-size: 43px 43px;
+}
+
+.planet {
+  position: relative;
+  z-index: 2;
+  width: min(48%, 12rem);
+  height: auto;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid rgb(103 232 249 / 38%);
+  border-radius: 50%;
+  background: #0e7490;
+  box-shadow: inset -2rem -1rem 3rem rgb(2 6 23 / 82%), 0 0 3rem rgb(34 211 238 / 22%);
+  transition: transform 650ms cubic-bezier(.22, 1, .36, 1), box-shadow 450ms ease;
+}
+
+.image {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center center;
+  filter: saturate(.9) contrast(1.08) brightness(.76);
+  transform: scale(1.01);
+  transform-origin: center center;
+  transition: filter 450ms ease, transform 900ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.imageFallback { position: absolute; inset: 0; background: linear-gradient(135deg, #155e75, #312e81 58%, #020617); }
+.atmosphere { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 30% 24%, rgb(255 255 255 / 23%), transparent 22%); box-shadow: inset -2rem -1rem 3rem rgb(2 6 23 / 72%); }
+.orbit { position: absolute; z-index: 1; display: block; width: 61%; height: 35%; border: 1px solid rgb(103 232 249 / 30%); border-radius: 50%; transform: rotate(-13deg); transition: width 650ms cubic-bezier(.22, 1, .36, 1), border-color 300ms ease; }
+.moon { position: absolute; z-index: 3; display: block; width: .72rem; aspect-ratio: 1; border-radius: 50%; background: #a5f3fc; box-shadow: 0 0 1.15rem #22d3ee; animation: moonFloat 5s ease-in-out infinite; }
+.shadow { position: absolute; bottom: 8%; display: block; width: 30%; height: 7%; border-radius: 50%; background: rgb(34 211 238 / 12%); filter: blur(15px); }
+
+.content {
+  --spot-x: 50%;
+  --spot-y: 50%;
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgb(103 232 249 / 16%);
+  border-radius: 1.15rem;
+  padding: clamp(1.5rem, 3vw, 2.35rem);
+  background: radial-gradient(20rem circle at var(--spot-x) var(--spot-y), rgb(103 232 249 / 8%), transparent 72%), linear-gradient(to bottom, transparent 0, rgb(15 23 42 / 58%) 2.5rem, rgb(7 13 29 / 82%) 6rem, rgb(2 6 23 / 76%) 100%);
+  box-shadow: 0 1.5rem 4rem rgb(2 6 23 / 24%);
+  transition: border-color 300ms ease, box-shadow 300ms ease;
+}
+
+.card:hover .content, .card:focus-within .content { border-color: rgb(103 232 249 / 38%); box-shadow: 0 1.8rem 4.5rem rgb(2 6 23 / 36%), 0 0 2rem rgb(34 211 238 / 7%); }
+
+.content::before { display: none; }
+.labels { display: flex; flex-direction: column; align-items: flex-start; gap: .55rem; }
+.number, .category { color: #67e8f9; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.category { color: #94a3b8; line-height: 1.45; }
+.title { margin-top: .9rem; color: #f8fafc; font-size: clamp(1.2rem, 2vw, 1.65rem); font-weight: 400; line-height: 1.35; }
+.highlight { margin-top: .75rem; color: #cbd5e1; font-size: .9rem; line-height: 1.55; }
+.details { display: flex; flex: 1; flex-direction: column; }
+.description { margin-top: 1rem; color: #a8b5c7; font-size: .82rem; line-height: 1.7; }
+.features { display: grid; gap: .45rem; margin-top: 1rem; padding: 0; color: #cbd5e1; font-size: .75rem; line-height: 1.55; list-style: none; }
+.features li { position: relative; padding-left: 1rem; }
+.features li::before { position: absolute; top: .5rem; left: 0; width: .32rem; height: .32rem; content: ""; border-radius: 50%; background: #22d3ee; box-shadow: 0 0 .6rem rgb(34 211 238 / 70%); }
+.technologies { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.1rem; margin-bottom: 1.8rem; padding: 0; list-style: none; }
+.technology { display: inline-flex; align-items: center; gap: .4rem; border: 1px solid rgb(103 232 249 / 22%); border-radius: 999px; padding: .38rem .68rem; background: rgb(4 10 25 / 76%); color: #dbeafe; font-size: .68rem; box-shadow: inset 0 0 .8rem rgb(34 211 238 / 5%); transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease; }
+.technology:hover { border-color: rgb(103 232 249 / 55%); box-shadow: 0 0 1rem rgb(34 211 238 / 14%), inset 0 0 .8rem rgb(34 211 238 / 8%); transform: translateY(-2px); }
+.technologyIcon { width: 1rem; height: 1rem; flex: none; filter: drop-shadow(0 0 .35rem currentColor); }
+.link { align-self: flex-start; margin-top: auto; padding: .65rem 1.15rem; color: #67e8f9; font-size: .72rem; font-weight: 700; }
+.link::after { margin-left: .55rem; content: "→"; }
+.link:hover, .link:focus-visible { color: #fff; outline: none; transform: translateY(-2px); }
+
+.card:hover .planet, .card:focus-within .planet { box-shadow: inset -2rem -1rem 3rem rgb(2 6 23 / 62%), 0 0 3.5rem rgb(34 211 238 / 35%); transform: scale(1.09) rotate(-2deg); }
+.card:hover .image, .card:focus-within .image { filter: saturate(1.02) contrast(1.05) brightness(.9); transform: scale(1.055); }
+.card:hover .orbit, .card:focus-within .orbit { width: 70%; border-color: rgb(103 232 249 / 58%); }
+
+@keyframes moonFloat {
+  0%, 100% { transform: translate(7rem, -3.5rem); }
+  50% { transform: translate(7.6rem, 3.5rem); }
+}
+
+@media (max-width: 850px) {
+  .card:hover, .card:focus-within { transform: translateY(-.25rem); }
+}
+
+@media (max-width: 480px) {
+  .planet { width: min(52%, 10rem); }
+  .content { padding: 1.2rem; }
+  .description { font-size: .78rem; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .card:hover { transform: none; }
+  .content { background: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moon { animation: none; }
+  .card, .planet, .image, .orbit, .link { transition-duration: 1ms; }
+}

@@ -2,7 +2,6 @@
 import { projects } from "@/data/projects";
 import type { pt } from "@/dictionaries/pt";
 import { Reveal } from "@/components/animations/Reveal";
-import { ProjectCarousel } from "@/components/projects/ProjectCarousel";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { Astronaut } from "@/components/ui/Astronaut";
 import styles from "./Projects.module.css";
@@ -33,19 +32,14 @@ export function Projects({ content }: ProjectsProps) {
           </p>
         </Reveal>
 
-        <Reveal delay={0.1}>
-          <ProjectCarousel
-            previousLabel={content.previousProject}
-            nextLabel={content.nextProject}
-            carouselLabel={content.carouselLabel}
-          >
+        <Reveal delay={0.1} className={styles.projectGrid}>
             {projects.map((project) => {
               // Usa a chave do projeto para encontrar sua tradução.
               const projectContent = content.items[project.key];
 
               return (
-                <div key={project.id}>
-                  <ProjectCard
+                <ProjectCard
+                    key={project.id}
                     projectId={project.id}
                     number={`${content.projectLabel} ${String(project.id).padStart(2, "0")}`}
                     title={projectContent.title}
@@ -62,10 +56,8 @@ export function Projects({ content }: ProjectsProps) {
                         : content.viewDashboard
                     }
                   />
-                </div>
               );
             })}
-          </ProjectCarousel>
         </Reveal>
       </div>
     </section>

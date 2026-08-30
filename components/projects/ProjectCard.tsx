@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import type { CSSProperties, MouseEvent } from "react";
+import { TechnologyIcon } from "@/components/technologies/TechnologyIcon";
+import { StarLink } from "@/components/ui/StarLink";
 import styles from "./ProjectCard.module.css";
 
 type ProjectCardProps = {
@@ -109,20 +111,21 @@ export function ProjectCard({
             <ul className={styles.technologies}>
               {technologies.map((technology) => (
                 <li key={technology} className={styles.technology}>
+                  <TechnologyIcon name={technology} className={styles.technologyIcon} />
                   {technology}
                 </li>
               ))}
             </ul>
 
             {projectUrl && (
-              <a
+              <StarLink
                 href={projectUrl}
                 target="_blank"
                 rel="noreferrer noopener"
                 className={styles.link}
               >
                 {buttonLabel}
-              </a>
+              </StarLink>
             )}
           </div>
         </div>

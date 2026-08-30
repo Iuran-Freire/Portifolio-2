@@ -245,108 +245,107 @@ strong {
   line-height: 1.5;
 }
 
-/* Moldura do personagem: une a apresentação moderna à linguagem pixel art. */
+/* Moldura do personagem: brilho orbital do loader rare-cow-16 adaptado ao quadro. */
+@property --avatar-frame-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 .main-hero-avatar {
   position: relative;
   isolation: isolate;
   width: min(100%, 21rem);
   aspect-ratio: 1;
   justify-self: center;
-  border: 2px solid #38bdf8;
+  border: 1px solid rgb(132 205 250 / 40%);
   padding: 0.55rem;
   background: rgb(3 12 20 / 82%);
   box-shadow:
-    0 0 0 7px rgb(3 12 20 / 85%),
-    0 0 0 9px rgb(56 189 248 / 70%),
-    0 0 55px rgb(14 165 233 / 26%);
-  animation: avatar-frame-pulse 4.5s ease-in-out infinite;
-}
-
-.main-hero-avatar::before {
-  position: absolute;
-  z-index: -2;
-  inset: -0.7rem;
-  content: "";
-  background: conic-gradient(
-    from 0deg,
-    transparent 0 18%,
-    #38bdf8 24%,
-    #a78bfa 30%,
-    transparent 38% 68%,
-    #67e8f9 76%,
-    transparent 84% 100%
-  );
-  opacity: 0.75;
-  filter: blur(2px);
-  animation: avatar-frame-orbit 8s linear infinite;
+    0 0 0 7px rgb(3 12 20 / 88%),
+    0 0 42px rgb(90 209 205 / 18%);
 }
 
 .main-hero-avatar::after {
   position: absolute;
-  z-index: -1;
+  z-index: 1;
   inset: 10%;
   border-radius: 50%;
-  background: #0ea5e9;
+  background: #5ad1cd;
   content: "";
-  opacity: 0.16;
-  filter: blur(42px);
+  opacity: 0.12;
+  filter: blur(38px);
+  pointer-events: none;
+}
+
+.main-hero-avatar-light {
+  position: absolute;
+  z-index: 0;
+  inset: -0.32rem;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--avatar-frame-angle),
+    #9b59b6 0deg,
+    #84cdfa 72deg,
+    #5ad1cd 138deg,
+    transparent 190deg 292deg,
+    #9b59b6 360deg
+  );
+  content: "";
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: avatar-frame-orbit 3.8s linear infinite;
+}
+
+.main-hero-avatar-light-one {
+  filter: blur(1px);
+}
+
+.main-hero-avatar-light-two {
+  opacity: 0.72;
+  filter: blur(5px);
+}
+
+.main-hero-avatar-light-three {
+  opacity: 0.48;
+  filter: blur(12px);
+}
+
+.main-hero-avatar-light-four {
+  opacity: 0.24;
+  filter: blur(28px);
 }
 
 .main-hero-avatar img {
+  position: relative;
+  z-index: 2;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   image-rendering: auto;
-}
-
-.main-hero-avatar-corner {
-  position: absolute;
-  z-index: 2;
-  width: 1.35rem;
-  height: 1.35rem;
-  border: 4px solid #bae6fd;
-}
-
-.main-hero-avatar-corner-one {
-  top: -0.55rem;
-  left: -0.55rem;
-  border-right: 0;
-  border-bottom: 0;
-  animation: avatar-corner-one 2.8s ease-in-out infinite alternate;
-}
-
-.main-hero-avatar-corner-two {
-  right: -0.55rem;
-  bottom: -0.55rem;
-  border-top: 0;
-  border-left: 0;
-  animation: avatar-corner-two 2.8s ease-in-out infinite alternate;
+  transform-origin: 50% 70%;
+  will-change: transform;
+  animation: avatar-character-float 6s ease-in-out infinite;
 }
 
 @keyframes avatar-frame-orbit {
   to {
-    transform: rotate(360deg);
+    --avatar-frame-angle: 360deg;
   }
 }
 
-@keyframes avatar-frame-pulse {
+@keyframes avatar-character-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.1deg);
+  }
   50% {
-    box-shadow:
-      0 0 0 7px rgb(3 12 20 / 88%),
-      0 0 0 9px rgb(56 189 248 / 88%),
-      0 0 72px rgb(14 165 233 / 38%);
-  }
-}
-
-@keyframes avatar-corner-one {
-  to {
-    transform: translate(-0.22rem, -0.22rem);
-  }
-}
-
-@keyframes avatar-corner-two {
-  to {
-    transform: translate(0.22rem, 0.22rem);
+    transform: translateY(-0.32rem) rotate(0.15deg);
   }
 }
 
@@ -445,9 +444,8 @@ section {
 
   .space-nebula,
   .space-comet,
-  .main-hero-avatar,
-  .main-hero-avatar::before,
-  .main-hero-avatar-corner,
+  .main-hero-avatar-light,
+  .main-hero-avatar img,
   .hero-special-name::before,
   .hero-special-name::after {
     animation: none;

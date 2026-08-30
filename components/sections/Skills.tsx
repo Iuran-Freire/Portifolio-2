@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type CSSProperties } from "react";
+import { FaBrain } from "react-icons/fa6";
 import { Reveal } from "@/components/animations/Reveal";
 import { TechnologyIcon } from "@/components/technologies/TechnologyIcon";
 import { skills } from "@/data/skills";
@@ -14,6 +15,10 @@ type SkillsProps = {
 
 export function Skills({ content }: SkillsProps) {
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+  const selectedSkillData = skills.find((skill) => skill.name === selectedSkill);
+  const selectedDescription = selectedSkill
+    ? content.technologies[selectedSkill as keyof typeof content.technologies]
+    : null;
 
   return (
     <section id="habilidades" className={styles.section}>
@@ -27,6 +32,8 @@ export function Skills({ content }: SkillsProps) {
         </Reveal>
 
         <Reveal delay={0.15} className={styles.galaxyWrapper}>
+          <p className={styles.hint}>{content.orbitHint}</p>
+
           <div className={styles.galaxy}>
             <SynapseCanvas />
 
@@ -48,7 +55,12 @@ export function Skills({ content }: SkillsProps) {
                   className={styles.coreIcon}
                 />
               ) : (
-                <strong className={styles.coreInitials}>IF</strong>
+                <span className={styles.coreBrainWrap} aria-hidden="true">
+                  <FaBrain className={`${styles.coreBrain} ${styles.brainGhostCyan}`} />
+                  <FaBrain className={`${styles.coreBrain} ${styles.brainGhostViolet}`} />
+                  <FaBrain className={`${styles.coreBrain} ${styles.brainMain}`} />
+                  <span className={styles.brainSpark} />
+                </span>
               )}
             </div>
 
@@ -82,7 +94,20 @@ export function Skills({ content }: SkillsProps) {
             </div>
           </div>
 
-          <p className={styles.hint}>{content.orbitHint}</p>
+          <div className={styles.infoArea} aria-live="polite">
+            {selectedSkill && (
+              <div key={selectedSkill} className={styles.infoCard}>
+                <span className={styles.infoLine} aria-hidden="true" />
+                {selectedSkillData && (
+                  <span className={styles.infoCategory}>
+                    {content.categories[selectedSkillData.category]}
+                  </span>
+                )}
+                <strong>{selectedSkill}</strong>
+                <p>{selectedDescription}</p>
+              </div>
+            )}
+          </div>
         </Reveal>
       </div>
     </section>

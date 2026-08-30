@@ -56,6 +56,17 @@ export const pt = {
       "Tecnologias utilizadas na criação de dashboards, análises e aplicações para o ambiente industrial.",
     orbitHint: "Selecione uma tecnologia para levá-la ao centro da galáxia.",
 
+    technologies: {
+      "Power BI": "Utilizo o Power BI para transformar dados industriais em dashboards de estoque, produção e qualidade, facilitando o acompanhamento de custos, yield, defeitos e outros indicadores.",
+      Excel: "O Excel apoia meus projetos na organização, validação e análise de dados, além de servir como formato de entrada e exportação em soluções como o BarcodeCam.",
+      SQL: "Uso SQL para estruturar consultas, validar registros e recuperar informações com segurança em projetos que precisam armazenar históricos e dados operacionais.",
+      PostgreSQL: "Aplico os conceitos do PostgreSQL na construção de bases relacionais mais robustas, preparadas para centralizar informações e atender aplicações em crescimento.",
+      JavaScript: "Uso JavaScript para criar interações, validações e comportamentos dinâmicos nas interfaces dos meus sistemas e projetos web.",
+      TypeScript: "Utilizo TypeScript para organizar melhor aplicações como este portfólio, reduzir erros durante o desenvolvimento e tornar os componentes mais fáceis de manter.",
+      React: "Com React, construo interfaces componentizadas e interativas, como as animações, navegação e experiências visuais presentes neste portfólio.",
+      "Node.js": "Uso Node.js no desenvolvimento de serviços e regras de negócio, conectando interfaces, dados e funcionalidades em aplicações como o Sistema de Gestão da Qualidade.",
+    },
+
     // Traduções das categorias usadas em data/skills.ts.
     categories: {
       businessIntelligence: "Business Intelligence",

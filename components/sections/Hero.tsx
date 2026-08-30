@@ -85,16 +85,18 @@ export function Hero({ content }: HeroProps) {
           className="main-hero-avatar"
           aria-label="Retrato em pixel art de Iuran Freire"
         >
-          <span className="main-hero-avatar-corner main-hero-avatar-corner-one" />
+          <span aria-hidden="true" className="main-hero-avatar-light main-hero-avatar-light-one" />
+          <span aria-hidden="true" className="main-hero-avatar-light main-hero-avatar-light-two" />
+          <span aria-hidden="true" className="main-hero-avatar-light main-hero-avatar-light-three" />
+          <span aria-hidden="true" className="main-hero-avatar-light main-hero-avatar-light-four" />
           <Image
-            src="/iuran-pixel-character.png"
-            alt="Iuran Freire em pixel art"
+            src="/iuran-pixel-character-nasa-v2.png"
+            alt="Iuran Freire em pixel art usando um moletom branco da NASA"
             width={512}
             height={512}
             priority
             unoptimized
           />
-          <span className="main-hero-avatar-corner main-hero-avatar-corner-two" />
         </FadeIn>
       </div>
     </section>

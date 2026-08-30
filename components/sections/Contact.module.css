@@ -9,11 +9,26 @@
 /* A frase em inglês é mais longa; esta variação evita que as letras
    ultrapassem o limite do título sem alterar a escala do português. */
 .titleEnglish {
-  max-width: 64rem;
-  padding-inline: 1.5rem;
+  width: 100%;
+  max-width: 68rem;
+  padding-inline: 2rem;
   font-size: clamp(1.7rem, 3.75vw, 2.85rem);
   line-height: 1.45;
 }
+.titleLead,
+.titleSecondLine {
+  display: block;
+  max-width: 100%;
+  overflow: visible;
+}
+.titleLead {
+  padding-inline: .08em;
+  background: linear-gradient(90deg,#67e8f9,#a78bfa,#f0abfc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.titleSecondLine { color: #f8fafc; }
 .description { max-width: 43rem; margin: 1.4rem auto 0; color: #94a3b8; font-size: clamp(1rem,2vw,1.15rem); line-height: 1.7; }
 .portalStation { position: relative; width: min(100%,60rem); margin: 3.5rem auto 0; border: 1px solid rgb(148 163 184 / 13%); border-radius: 2rem; padding: 2rem; background: linear-gradient(135deg,rgb(15 23 42 / 72%),rgb(2 6 23 / 62%)); box-shadow: 0 0 5rem rgb(99 102 241 / 14%),inset 0 1px 0 rgb(255 255 255 / 6%); backdrop-filter: blur(14px); font-style: normal; }
 .portalStation::before { position: absolute; z-index: -1; inset: -.8rem; content: ""; border-radius: 2.6rem; background: radial-gradient(ellipse at center,rgb(139 92 246 / 22%),transparent 70%); filter: blur(20px); }
@@ -33,7 +48,7 @@
 @keyframes portalSpin { to { transform: rotate(360deg); } }
 @media (max-width:640px) {
   .section { min-height: auto; padding: 5rem 1rem 6rem; }
-  .titleEnglish { padding-inline: .25rem; font-size: clamp(1.5rem, 7vw, 2rem); }
+  .titleEnglish { padding-inline: .5rem; font-size: clamp(1.5rem, 7vw, 2rem); }
   .portalStation { margin-top: 2.5rem; padding: 1.4rem .75rem; }
   .portalList { gap: .4rem; }
   .portal { width: 3.8rem; }

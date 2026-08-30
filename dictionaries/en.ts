@@ -58,6 +58,17 @@ export const en: typeof pt = {
       "Technologies used to create dashboards, analysis, and applications for industrial environments.",
     orbitHint: "Select a technology to bring it to the center of the galaxy.",
 
+    technologies: {
+      "Power BI": "I use Power BI to turn industrial data into inventory, production, and quality dashboards that make costs, yield, defects, and other indicators easier to monitor.",
+      Excel: "Excel supports my projects by organizing, validating, and analyzing data, while also serving as an input and export format in solutions such as BarcodeCam.",
+      SQL: "I use SQL to structure queries, validate records, and retrieve information safely in projects that store histories and operational data.",
+      PostgreSQL: "I apply PostgreSQL concepts when designing robust relational databases prepared to centralize information and support growing applications.",
+      JavaScript: "I use JavaScript to create interactions, validations, and dynamic behavior across the interfaces of my systems and web projects.",
+      TypeScript: "I use TypeScript to organize applications such as this portfolio, reduce development errors, and make components easier to maintain.",
+      React: "With React, I build component-based interactive interfaces, including the animations, navigation, and visual experiences found throughout this portfolio.",
+      "Node.js": "I use Node.js to develop services and business rules that connect interfaces, data, and features in applications such as the Quality Management System.",
+    },
+
     categories: {
       businessIntelligence: "Business Intelligence",
       dataAnalysis: "Data Analysis",
