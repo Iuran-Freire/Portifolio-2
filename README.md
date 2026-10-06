@@ -58,12 +58,17 @@ npm run build
 ## Organização principal
 
 ```text
-app/          rotas e metadados
-components/   interface, seções e animações
-data/         projetos e tecnologias
-dictionaries/ conteúdo em português e inglês
-public/       ícones e recursos visuais locais
+src/app/                 rotas e metadados do framework
+src/components/portfolio/ página atual dividida em seções e lógica de rolagem
+src/components/          componentes visuais e animações reutilizáveis
+src/data/                projetos e grupos de tecnologias
+src/dictionaries/        conteúdo em português e inglês
+public/                  imagens, ícones e recursos visuais
+infra/                   configuração de publicação e tipos do Cloudflare
+docs/                    guia da estrutura do projeto
 ```
+
+Comece por `src/components/portfolio/Portfolio.tsx`. Veja o mapa detalhado em [docs/ESTRUTURA.md](docs/ESTRUTURA.md).
 
 ## Créditos
 
@@ -77,3 +82,7 @@ O código original está disponível sob a licença MIT. Fotografias pessoais, i
 
 - [LinkedIn](https://www.linkedin.com/in/iuran-freire-a23092204)
 - [GitHub](https://github.com/Iuran-Freire)
+
+## Recursos da cópia pública
+
+Fotos e capturas pessoais não estão incluídas. Para reproduzir o visual, adicione seus próprios arquivos nos caminhos de imagem indicados em src/data/projects.ts e HeroSection.tsx. Os contatos foram substituídos por exemplos; .openai/hosting.json contém apenas configuração vazia, sem identificadores de conta.

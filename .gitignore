@@ -41,6 +41,5 @@ next-env.d.ts
 /outputs/
 /work/
 
-# Personal and project assets omitted from the public source branch
-/public/*.png
-/public/projects/
+*.tsbuildinfo
+/.openai/deploy-stage/

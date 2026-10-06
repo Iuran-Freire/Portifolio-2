@@ -1,0 +1,23 @@
+{
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "package.json": "package-lock.json,tsconfig.json,vite.config.ts,next.config.ts,postcss.config.mjs,eslint.config.mjs,.gitignore",
+    "README.md": "LICENSE,ASSET-NOTICE.md"
+  },
+  "files.exclude": {
+    "**/.openai": true,
+    "**/.vscode": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.vinext": true,
+    "**/.wrangler": true,
+    "**/.next": true,
+    "**/.openai/deploy-stage": true,
+    "**/*.tsbuildinfo": true
+  },
+  "search.exclude": {
+    "**/dist": true,
+    "**/.openai/deploy-stage": true
+  }
+}
