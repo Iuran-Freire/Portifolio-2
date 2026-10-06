@@ -1,0 +1,22 @@
+.scene { position: absolute; top: 7.5rem; right: clamp(2rem,8vw,8rem); z-index: 2; width: 9rem; height: 9rem; pointer-events: none; filter: drop-shadow(0 0 1.4rem rgb(34 211 238 / 22%)); animation: sceneFloat 8s ease-in-out infinite; }
+.tether { position: absolute; top: 53%; right: 80%; width: 8rem; height: 4rem; border-top: 1px solid rgb(103 232 249 / 26%); border-radius: 50%; transform: rotate(18deg); }
+.astronaut { position: absolute; top: 50%; left: 50%; width: 4.4rem; height: 6rem; transform: translate(-50%,-50%) rotate(-18deg); animation: astronautRotate 18s linear infinite; }
+.head { position: absolute; z-index: 4; top: 0; left: .85rem; width: 2.85rem; height: 2.55rem; border: .34rem solid #dbeafe; border-radius: 48% 48% 44% 44%; background: #f8fafc; }
+.visor { position: absolute; inset: .28rem .22rem .36rem; border-radius: 50% 50% 45% 45%; background: linear-gradient(145deg,#67e8f9,#0891b2 56%,#164e63); box-shadow: inset .35rem .25rem .55rem rgb(255 255 255 / 30%); }
+.body { position: absolute; z-index: 3; top: 2.25rem; left: 1.05rem; width: 2.55rem; height: 2.65rem; border-radius: .55rem .55rem .8rem .8rem; background: linear-gradient(135deg,#f8fafc,#bfdbfe); }
+.panel { position: absolute; top: .65rem; left: .5rem; width: 1.55rem; height: 1.05rem; border-radius: .2rem; background: #93c5fd; box-shadow: inset 0 -.28rem 0 #60a5fa; }
+.panel::before { position: absolute; top: .18rem; left: .2rem; width: .25rem; height: .25rem; content: ""; border-radius: 50%; background: #22d3ee; box-shadow: .42rem 0 #818cf8,.84rem 0 #38bdf8; }
+.backpack { position: absolute; z-index: 1; top: 2.45rem; left: .55rem; width: 1.15rem; height: 2.15rem; border-radius: .35rem; background: #7dd3fc; }
+.arm,.leg { position: absolute; z-index: 2; border-radius: 999px; background: #dbeafe; transform-origin: top center; }
+.arm { top: 2.5rem; width: .75rem; height: 2.15rem; }
+.arm::after,.leg::after { position: absolute; bottom: -.18rem; left: -.08rem; width: .9rem; height: .55rem; content: ""; border-radius: 999px; background: #93c5fd; }
+.armLeft { left: .55rem; transform: rotate(48deg); }
+.armRight { right: .45rem; transform: rotate(-52deg); }
+.leg { top: 4.45rem; width: .82rem; height: 2rem; }
+.legLeft { left: 1.15rem; transform: rotate(28deg); }
+.legRight { right: 1.05rem; transform: rotate(-34deg); }
+@keyframes sceneFloat { 50% { transform: translate(-1.2rem,1rem); } }
+@keyframes astronautRotate { to { transform: translate(-50%,-50%) rotate(342deg); } }
+@media (max-width:800px) { .scene { top: 8rem; right: 1.5rem; scale: .7; opacity: .65; } }
+@media (max-width:560px) { .scene { display: none; } }
+@media (prefers-reduced-motion:reduce) { .scene,.astronaut { animation: none; } }

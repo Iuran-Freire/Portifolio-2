@@ -1,0 +1,42 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  overflow: hidden;
+}
+.arrow, .label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  pointer-events: none;
+}
+.arrow {
+  width: 28px;
+  height: 28px;
+  transform-origin: 2px 2px;
+  margin: -2px 0 0 -2px;
+  filter: drop-shadow(0 2px 3px #0005);
+}
+.label {
+  background: #ef554b;
+  color: #111110;
+  border: 1px solid #ffffff30;
+  border-radius: 5px 14px 14px;
+  padding: 5px 11px;
+  font: 600 12px/1.4 Arial, sans-serif;
+  white-space: nowrap;
+  box-shadow: 0 3px 12px #0003;
+}
+@media (hover: hover) and (pointer: fine) {
+  :global(html.portfolio-cursor-active),
+  :global(html.portfolio-cursor-active *) { cursor: none !important; }
+}
+@media (hover: none), (pointer: coarse) {
+  .root { display: none; }
+}
+@media (max-width: 700px) {
+  .root { display: none; }
+}

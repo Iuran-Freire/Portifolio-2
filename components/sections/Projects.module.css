@@ -1,0 +1,24 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 14% 48%, rgb(34 211 238 / 5%), transparent 28rem),
+    radial-gradient(circle at 88% 70%, rgb(139 92 246 / 6%), transparent 30rem),
+    rgb(2 6 23 / 42%);
+}
+
+.section::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgb(103 232 249 / 70%) 0 1px, transparent 1.3px),
+    radial-gradient(circle, rgb(196 181 253 / 55%) 0 1px, transparent 1.3px);
+  background-position: 0 0, 29px 38px;
+  background-size: 67px 67px, 89px 89px;
+  mask-image: linear-gradient(to bottom, transparent, black 22%, black 72%, transparent);
+}
+
+.content { position: relative; z-index: 1; }

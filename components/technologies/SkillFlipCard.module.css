@@ -1,0 +1,113 @@
+.card {
+  min-height: 7.5rem;
+  perspective: 1000px;
+  border-radius: 1rem;
+  outline: none;
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  min-height: 7.5rem;
+  transform-style: preserve-3d;
+  transition: transform 700ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.card:hover .inner,
+.card:focus-visible .inner {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 1rem;
+  background: rgb(15 23 42 / 90%);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 18px 45px rgb(2 6 23 / 20%);
+}
+
+.front {
+  transform: rotateY(0deg);
+}
+
+.back {
+  align-items: center;
+  gap: 0.75rem;
+  transform: rotateY(180deg);
+  border-color: rgb(34 211 238 / 42%);
+  background:
+    radial-gradient(circle at center, rgb(34 211 238 / 13%), transparent 65%),
+    rgb(15 23 42 / 96%);
+}
+
+.category {
+  color: #22d3ee;
+  font-size: 0.875rem;
+}
+
+.name {
+  margin-top: 0.75rem;
+  color: #f8fafc;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.backName {
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+.logo {
+  width: 3rem;
+  height: 3rem;
+  filter: drop-shadow(0 0 14px currentColor);
+}
+
+.card:focus-visible {
+  box-shadow: 0 0 0 2px #22d3ee;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inner {
+    transition-duration: 1ms;
+  }
+}
+
+@media (hover: none) {
+  .card:focus .inner {
+    transform: rotateY(180deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .card,
+  .inner {
+    min-height: 8.5rem;
+  }
+
+  .face {
+    padding: 1rem;
+  }
+
+  .category {
+    font-size: 0.72rem;
+  }
+
+  .name,
+  .backName {
+    font-size: 0.95rem;
+  }
+
+  .logo {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}

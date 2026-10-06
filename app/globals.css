@@ -1,0 +1,238 @@
+/* Carrega o Tailwind CSS */
+@import "tailwindcss";
+
+/* Variáveis globais de cores */
+:root {
+  --background: #111110;
+  --foreground: #efeee7;
+  --space-surface: #050b1d;
+  --space-deep: #020617;
+}
+
+/* Disponibiliza as variáveis para o Tailwind */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-poppins);
+}
+
+/* Rolagem suave entre as seções */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Estilo geral da página */
+body {
+  margin: 0;
+  overflow-x: clip;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, sans-serif;
+  font-feature-settings: "kern", "liga";
+}
+
+.site-shell { position: relative; isolation: isolate; background: transparent; }
+.site-stars { position: fixed; z-index: -2; inset: 0; pointer-events: none; }
+.site-ambience { position: fixed; z-index: -1; inset: 0; overflow: hidden; pointer-events: none; }
+.site-content { position: relative; z-index: 1; }
+
+/* Camadas luminosas lentas tornam o espaço vivo, mantendo baixo custo visual. */
+.space-nebula {
+  position: absolute;
+  width: clamp(22rem, 42vw, 48rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0.16;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+.space-nebula-cyan {
+  top: 8%;
+  left: -16rem;
+  background: radial-gradient(circle, #0891b2, transparent 66%);
+  animation: nebula-drift-cyan 24s ease-in-out infinite alternate;
+}
+
+.space-nebula-violet {
+  right: -18rem;
+  bottom: 5%;
+  background: radial-gradient(circle, #7c3aed, transparent 66%);
+  animation: nebula-drift-violet 29s ease-in-out infinite alternate;
+}
+
+.space-comet {
+  position: absolute;
+  top: 24%;
+  left: -14rem;
+  width: 11rem;
+  height: 1px;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, rgb(103 232 249 / 75%), #fff);
+  box-shadow: 5rem 0 1.2rem rgb(34 211 238 / 28%);
+  transform: rotate(-18deg);
+  animation: comet-crossing 15s ease-in-out infinite 4s;
+}
+
+/* Breves reflexos cromáticos inspirados no Special Text da referência. */
+.hero-special-name {
+  position: relative;
+  isolation: isolate;
+  text-shadow: -1px 0 rgb(34 211 238 / 32%), 1px 0 rgb(167 139 250 / 28%);
+}
+.hero-special-name::before,
+.hero-special-name::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: attr(data-text);
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.hero-special-name::before { color: #22d3ee; transform: translateX(-2px); }
+.hero-special-name::after { color: #a78bfa; transform: translateX(2px); }
+.hero-special-name::before { animation: name-spectrum-cyan 7s steps(1,end) infinite; }
+.hero-special-name::after { animation: name-spectrum-violet 7s steps(1,end) infinite; }
+
+@keyframes name-spectrum-cyan {
+  0%, 86%, 100% { opacity: 0; clip-path: inset(0 0 100% 0); }
+  88% { opacity: .7; clip-path: inset(12% 0 62% 0); }
+  90% { opacity: .45; clip-path: inset(58% 0 17% 0); }
+  92% { opacity: 0; clip-path: inset(0 0 100% 0); }
+}
+
+@keyframes name-spectrum-violet {
+  0%, 87%, 100% { opacity: 0; clip-path: inset(100% 0 0 0); }
+  89% { opacity: .65; clip-path: inset(36% 0 40% 0); }
+  91% { opacity: .4; clip-path: inset(74% 0 5% 0); }
+  93% { opacity: 0; clip-path: inset(100% 0 0 0); }
+}
+
+@keyframes nebula-drift-cyan { to { transform: translate(28vw, 18vh) scale(1.14); } }
+@keyframes nebula-drift-violet { to { transform: translate(-24vw, -20vh) scale(1.18); } }
+@keyframes comet-crossing {
+  0%, 68%, 100% { opacity: 0; transform: translateX(0) rotate(-18deg); }
+  72% { opacity: .8; }
+  86% { opacity: 0; transform: translateX(calc(100vw + 28rem)) rotate(-18deg); }
+}
+
+/* A fonte de destaque cria uma identidade consistente nas áreas principais. */
+h1,
+h2,
+h3,
+nav,
+button,
+strong {
+  font-family: var(--font-poppins), var(--font-inter), sans-serif;
+}
+
+/* Evita que o cabeçalho cubra os títulos das seções */
+section {
+  scroll-margin-top: 5rem;
+}
+
+/* Reserva espaço para o menu inferior exibido nos celulares. */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 5rem;
+  }
+
+  section {
+    scroll-margin-top: 4.5rem;
+  }
+}
+
+/* Entrada utilizada pelos elementos do Hero */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fade-in-up 600ms ease-out forwards;
+  animation-delay: var(--animation-delay, 0s);
+}
+
+/* Estado inicial dos elementos revelados durante a rolagem */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 700ms ease-out,
+    transform 700ms ease-out;
+  transition-delay: var(--animation-delay, 0s);
+}
+
+/* Estado aplicado quando o elemento entra na tela */
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Interação reutilizável de links e botões */
+.animated-link {
+  display: inline-block;
+  transition:
+    transform 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease;
+}
+
+.animated-link:hover {
+  transform: scale(1.04);
+}
+
+.animated-link:active {
+  transform: scale(0.96);
+}
+
+/* Animação de entrada do Hero */
+@keyframes fade-in-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Desativa movimentos quando solicitado pelo sistema */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fade-in-up,
+  .reveal-up {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+
+  .animated-link {
+    transition: none;
+  }
+
+  .animated-link:hover,
+  .animated-link:active {
+    transform: none;
+  }
+
+  .space-nebula,
+  .space-comet,
+  .hero-special-name::before,
+  .hero-special-name::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .space-nebula { opacity: .1; filter: blur(70px); }
+  .space-comet { display: none; }
+  .hero-special-name::before { transform: translateX(-1px); }
+  .hero-special-name::after { transform: translateX(1px); }
+}
+
